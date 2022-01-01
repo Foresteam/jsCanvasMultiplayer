@@ -1,0 +1,19 @@
+#room-list .item {
+    background: #111;
+    vertical-align: middle;
+}
+#room-list .item td {
+    padding-left: 10pt;
+    padding-right: 10pt;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    margin: 0;
+}
+#room-list {
+    border-spacing: 0pt 10pt;
+    margin: auto;
+    background: rgba(0, 0, 0, .5);
+    width: 1280px;
+    padding: 5pt;
+    min-height: 50px;
+}

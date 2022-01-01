@@ -45,9 +45,12 @@ class Pair {
 	}
 }
 
-const gameTime = 60;
+const gameTime = 600;
 class GameRoom {
-	constructor() {
+	constructor(id) {
+		this.id = id;
+		console.log(`Room created (#${this.id})`);
+
 		this.players = []; // { sock: socket, id: socket.id, connections, vilki, rozetki }
 
 		this.time = 0;
@@ -82,13 +85,15 @@ class GameRoom {
 	}
 	playerConnected(sock) {
 		this.players.push({ sock, id: sock.id, vilki: [], rozetki: [], connections: [] });
-		console.log(`Player #${sock.id} connected`);
+		console.log(`Player #${sock.id} connected (#${this.id})`);
+		RoomListUpdate();
 	}
 	playerLeft(id) {
 		this.players = this.players.filter(v => v.id != id);
-		console.log(`Player #${id} disconnected`);
+		console.log(`Player #${id} disconnected (#${this.id})`);
 		if (this.players.length == 0)
 			this.end();
+		RoomListUpdate();
 	}
 	start() {
 		this.time = Date.now();
@@ -140,8 +145,9 @@ class GameRoom {
 	}
 	end() {
 		clearInterval(this._update);
-		gameRoom = null;
-		delete this;
+		console.log(`Room closed (#${this.id})`);
+		delete gameRooms[this.id];
+		RoomListUpdate();
 	}
 	over() {
 		let record = { winner: 0, scoreWin: 0, scoreLoose: 0, playTime: (Date.now() - this.time) / 1000, id: db.self.length };
@@ -166,13 +172,33 @@ class GameRoom {
 		this.end();
 	}
 }
-let gameRoom = null;
+
+let gameIndex = 0;
+let gameRooms = {};
+let roomListListeners = [];
+
+app.ws('/game/rooms', async (ws, rq) => {
+	roomListListeners.push(sm.enslave(ws, () => roomListListeners = roomListListeners.filter(v => v != ws && v)));
+	RoomListUpdate();
+});
+const RoomListUpdate = () => {
+	let data = Object.entries(gameRooms).map(([k, v]) => ([k, { players: v && v.players.length }]));
+	for (let ws of roomListListeners)
+		ws && ws.send(JSON.stringify(data));
+	console.log(gameRooms);
+}
 
 console.log('Server started');
-app.ws('/game', async (ws, rq) => {
-	if (!gameRoom)
-		gameRoom = new GameRoom();
-	if (gameRoom.players.length >= 2)
+app.ws('/game/:mode', async (ws, rq) => {
+	let gameRoom;
+	if (rq.params.mode == 'join')
+		gameRoom = gameRooms[rq.query.id];
+	else if (rq.params.mode == 'create') {
+		gameRoom = gameRooms[gameIndex] = new GameRoom(gameIndex++);
+		RoomListUpdate();
+	}
+
+	if (!gameRoom || gameRoom.players.length >= 2)
 		return ws.close();
 	gameRoom.playerConnected(sm.enslave(ws, id => gameRoom && gameRoom.playerLeft(id)));
 	ws.onmessage = ({ data: msg }) => {

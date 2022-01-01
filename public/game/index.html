@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html class="lobby">
 <head>
 	<title>Игра</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="../styles/gameMenu.css">
 </head>
 <body>
-	<span id="timer"></span><br>
-	<canvas id="cnv" width="1600px" height="900px"></canvas>
-	<img src="assets/cock.jpg" id="cock" hidden="">
-	<img src="assets/rozetka.png" id="rozetka" hidden="">
-	<img src="assets/vilka.png" id="vilka" hidden="">
-	<script type="text/javascript" src="gameObjects.js"></script>
-	<script type="text/javascript" src="index.js"></script>
-	<script type="text/javascript" src="networking.js"></script>
+	<div id="lobby">
+		<div id="create-join-menu"><input type="button" value="Create" onclick="Networking('create')"></div>
+		<table id="room-list" border="0"></table>
+		<div id="create-wait">create-wait</div>
+	</div>
+	<div id="game" hidden="">
+		<span id="timer"></span><br>
+		<canvas id="cnv" width="1600px" height="900px"></canvas>
+		<img src="assets/cock.jpg" id="cock" hidden="">
+		<img src="assets/rozetka.png" id="rozetka" hidden="">
+		<img src="assets/vilka.png" id="vilka" hidden="">
+		<script type="text/javascript" src="gameObjects.js"></script>
+		<script type="text/javascript" src="networking.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+	</div>
 </body>
 </html>
