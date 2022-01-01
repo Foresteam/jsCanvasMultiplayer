@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru" class="main">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<title>Магазин</title>
+</head>
+
+<body>
+	<header class="header"></header>
+	<div class="ab">
+		<div class="cont wow slideInLeft" data-wow-offset="300" data-wow-duration=".8s" data-wow-delay=".3s">
+			<% if (solo) {%>
+			<div class="over">
+				<p>
+					<center>
+						Игра закончена! Результат:
+						<%= record.winner ? 'победа игрока ' + record.winner : 'ничья' %><br>
+						Время игры: <%= record.playTime %>
+					</center>
+				</p>
+			</div>
+			<div class="results">
+				<table align=center>
+					<tr>
+						<td colspan=2 align=center>
+							<b>Результаты игры</b>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							1
+						</td>
+						<td align="center">
+							2
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<%= (record.winner == 1 ? record.scoreWin : record.scoreLoose) %> очков
+						</td>
+						<td align="center">
+							<%= (record.winner == 2 ? record.scoreWin : record.scoreLoose) %> очков
+						</td>
+					</tr>
+				</table>
+			</div>
+			<% } else {%>
+			<div class="results">
+				<table align="center">
+					<thead>
+						<tr>
+							<td colspan=3 align="center">
+								<b>Таблица результатов</b>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">Победил игрок</td>
+							<td align="center">Очки</td>
+							<td align="center">Время</td>
+						</tr>
+					</thead>
+					<tbody>
+						<% for (let rec of record) {%>
+						<tr>
+							<td align="center"><%=rec.winner || 'ничья'%></td>
+							<td align="center"><%=rec.scoreWin%></td>
+							<td align="center"><%=rec.playTime%></td>
+						</tr>
+						<% }%>
+					</tbody>
+				</table>
+			</div>
+			<% }%>
+			<div style="display: flex; justify-content: center; margin-top: 20pt">
+				<input type="button" value="На главную" onclick="location.href='/'">
+				<input type="button" value="К общим результатам" onclick="location.href='/view'">
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
