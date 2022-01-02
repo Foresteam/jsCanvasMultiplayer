@@ -8,9 +8,12 @@
 </head>
 <body>
 	<div id="lobby">
-		<div id="create-join-menu"><input type="button" value="Create" onclick="Networking('create')"></div>
+		<div id="create-join-menu"><input type="button" value="Create"></div>
 		<table id="room-list" border="0"></table>
-		<div id="create-wait">create-wait</div>
+		<div id="create-wait" hidden="">
+			Ожидание игроков...
+			<input type="button" value="Отмена">
+		</div>
 	</div>
 	<div id="game" hidden="">
 		<span id="timer"></span><br>
@@ -21,6 +24,7 @@
 		<script type="text/javascript" src="gameObjects.js"></script>
 		<script type="text/javascript" src="networking.js"></script>
 		<script type="text/javascript" src="index.js"></script>
+		<script type="text/javascript" src="menu.js"></script>
 	</div>
 </body>
 </html>

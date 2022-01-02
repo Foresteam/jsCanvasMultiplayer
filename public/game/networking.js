@@ -13,6 +13,7 @@ const Networking = (mode, params) => {
             data = data.data;
             switch (type) {
                 case 'gameStart':
+                   SelectChild(document.querySelector('body'), '#game');
                     for (let v of data.myVilki)
                         gameObjects.push(new Vilka(new Pos(...v.pos), v.color, true, v.id));
                     for (let v of data.myRozetki)

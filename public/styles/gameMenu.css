@@ -17,3 +17,23 @@
     padding: 5pt;
     min-height: 50px;
 }
+
+#create-wait {
+    font: 34pt;
+    text-align: center;
+    justify-content: center;
+    flex-flow: column;
+}
+#create-wait input {
+    display: block;
+    margin: auto;
+}
+
+#create-join-menu input {
+    display: block;
+    margin: auto;
+}
+
+canvas {
+    background: white;
+}

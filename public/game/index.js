@@ -31,17 +31,4 @@ canvas.addEventListener('mousemove', event => {
 	mY = event.offsetY;
 });
 
-RoomListListen(rooms => {
-	let list = document.querySelector('#room-list');
-	let t = '';
-	for (let [id, {players}] of rooms)
-		t += `
-			<tr class="item">
-				<td style="text-align: left; width: 50%">#${id}</td>
-				<td style="text-align: center;">${players}/2</td>
-				<td style="text-align: center;">${players < 2 ? 'Ожидание' : 'Идет игра'}</td>
-				<td align="center"><input type="button" value="Присоединиться"></td>
-			</tr>
-		`;
-	list.innerHTML = t;
-});
+const Join = id => Networking('join', `id=${id}`);

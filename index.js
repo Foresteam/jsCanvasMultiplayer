@@ -34,7 +34,7 @@ class Pair {
 			let iHor = iiHorizontal.ejectRandom();
 			let iVer = iiVertical.ejectRandom();
 
-			this.rozetka = { pos: [50 + iHor * cellSizeHorizontal, 0], color, id };
+			this.rozetka = { pos: [50 + iHor * cellSizeHorizontal * 0.9, 0], color, id };
 			this.vilka = { pos: [0, 30 / 2 + iVer * cellSizeVertical], color, id };
 		}
 		else {
@@ -45,7 +45,7 @@ class Pair {
 	}
 }
 
-const gameTime = 600;
+const gameTime = 60;
 class GameRoom {
 	constructor(id) {
 		this.id = id;
