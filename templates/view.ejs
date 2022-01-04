@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru" class="main">
-
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	<title>Магазин</title>
 </head>
-
 <body>
 	<header class="header"></header>
 	<div class="ab">
@@ -15,9 +13,9 @@
 			<div class="over">
 				<p>
 					<center>
-						Игра закончена! Результат:
-						<%= record.winner ? 'победа игрока ' + record.winner : 'ничья' %><br>
-						Время игры: <%= record.playTime %>
+						Game over! Result:
+						<%= record.winner ? `player #${record.winner} won` : 'draw' %><br>
+						Play time: <%= record.playTime %>
 					</center>
 				</p>
 			</div>
@@ -25,7 +23,7 @@
 				<table align=center>
 					<tr>
 						<td colspan=2 align=center>
-							<b>Результаты игры</b>
+							<b>Match results</b>
 						</td>
 					</tr>
 					<tr>
@@ -38,10 +36,10 @@
 					</tr>
 					<tr>
 						<td align="center">
-							<%= (record.winner == 1 ? record.scoreWin : record.scoreLoose) %> очков
+							<%= (record.winner == 1 ? record.scoreWin : record.scoreLoose) %> score
 						</td>
 						<td align="center">
-							<%= (record.winner == 2 ? record.scoreWin : record.scoreLoose) %> очков
+							<%= (record.winner == 2 ? record.scoreWin : record.scoreLoose) %> score
 						</td>
 					</tr>
 				</table>
@@ -52,19 +50,19 @@
 					<thead>
 						<tr>
 							<td colspan=3 align="center">
-								<b>Таблица результатов</b>
+								<b>Results table</b>
 							</td>
 						</tr>
 						<tr>
-							<td align="center">Победил игрок</td>
-							<td align="center">Очки</td>
-							<td align="center">Время</td>
+							<td align="center">Winner</td>
+							<td align="center">Score</td>
+							<td align="center">Time</td>
 						</tr>
 					</thead>
 					<tbody>
 						<% for (let rec of record) {%>
 						<tr>
-							<td align="center"><%=rec.winner || 'ничья'%></td>
+							<td align="center"><%=rec.winner || 'draw'%></td>
 							<td align="center"><%=rec.scoreWin%></td>
 							<td align="center"><%=rec.playTime%></td>
 						</tr>
@@ -79,8 +77,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
-
 </html>

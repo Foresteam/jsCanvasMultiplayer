@@ -22,7 +22,6 @@ const Networking = (mode, params) => {
                         gameObjects.push(new Vilka(new Pos(...v.pos), v.color, false, v.id));
                     for (let v of data.theirRozetki)
                         gameObjects.push(new Rozetka(new Pos(...v.pos), v.color, false, v.id));
-                    console.log(gameObjects);
                     break;
                 case 'update':
                     gameObjects = gameObjects.filter(obj => !(obj instanceof VWire));

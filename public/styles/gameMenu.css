@@ -34,6 +34,6 @@
     margin: auto;
 }
 
-canvas {
-    background: white;
+canvas#cnv {
+    background: rgba(0, 0, 0, .5);
 }

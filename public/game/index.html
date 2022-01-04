@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="lobby">
 <head>
-	<title>Игра</title>
+	<title class="status">The Conductor</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="stylesheet" href="../styles/gameMenu.css">
@@ -9,9 +9,9 @@
 <body>
 	<div id="lobby">
 		<div id="create-join-menu"><input type="button" value="Create"></div>
-		<table id="room-list" border="0"></table>
+		<table id="room-list" border="0" style="text-align: center;"></table>
 		<div id="create-wait" hidden="">
-			Ожидание игроков...
+			Waiting for another player<span class="animated-dots" count="6"></span>
 			<input type="button" value="Отмена">
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 		<img src="assets/vilka.png" id="vilka" hidden="">
 		<script type="text/javascript" src="gameObjects.js"></script>
 		<script type="text/javascript" src="networking.js"></script>
-		<script type="text/javascript" src="index.js"></script>
+		<script type="text/javascript" src="game.js"></script>
 		<script type="text/javascript" src="menu.js"></script>
 	</div>
 </body>

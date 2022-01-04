@@ -1,1 +1,30 @@
-[]
+[
+    {
+        "winner": 1,
+        "scoreWin": 0.09994503023337165,
+        "scoreLoose": 0.03331501007779055,
+        "playTime": 60.033,
+        "id": 0
+    },
+    {
+        "winner": 2,
+        "scoreWin": 0.04998750312421894,
+        "scoreLoose": 0,
+        "playTime": 60.015,
+        "id": 1
+    },
+    {
+        "winner": 0,
+        "scoreWin": 0,
+        "scoreLoose": 0,
+        "playTime": 60.027,
+        "id": 2
+    },
+    {
+        "winner": 0,
+        "scoreWin": 0,
+        "scoreLoose": 0,
+        "playTime": 60.045,
+        "id": 3
+    }
+]

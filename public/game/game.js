@@ -12,7 +12,7 @@ const draw = () => {
 	ctx.clearRect(0, 0, W, H);
 	for (let obj of gameObjects)
 		obj.Render();
-	document.getElementById('timer').innerHTML = `Оставшееся время: ${timeLeft}с`;
+	document.getElementById('timer').innerHTML = `Time left: ${Math.floor(timeLeft)}с`;
 }
 
 setInterval(draw, 10);
@@ -31,4 +31,7 @@ canvas.addEventListener('mousemove', event => {
 	mY = event.offsetY;
 });
 
-const Join = id => Networking('join', `id=${id}`);
+const Join = id => {
+	Networking('join', `id=${id}`);
+	SetStatus('In game');
+}
